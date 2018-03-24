@@ -1,6 +1,8 @@
 .idea
 disks/C/*
 disks/D/*
+!disks/C/.keep
+!disks/D/.keep
 archive
 done
 done2
