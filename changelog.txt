@@ -1,6 +1,6 @@
 Version 0.7 DEMO Beta:
 --Added Demo version
---Added commands: "read", "demogame", "print", "mkdir", "rm",
+--Added commands: "start", "print", "mkdir", "rm", "ls"
 -------------------------------------------------------------------------------------
 Version 0.6 Beta:
 --Updated AndrOS Helper to version 1.3
