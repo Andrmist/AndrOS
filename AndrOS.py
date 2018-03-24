@@ -8,7 +8,6 @@ import codecs
 
 version = '0.7.1 Beta'
 devMode = ('DEV' in os.environ) if True else False
-print(devMode)
 
 config = configparser.ConfigParser()
 config.read_file(codecs.open("config.ini", "r", "utf8"))
