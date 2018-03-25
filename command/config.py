@@ -6,7 +6,8 @@ class Config:
         self.config_file = configFile
         self.config = configparser.ConfigParser()
         self.config.read_file(codecs.open(configFile, "r", "utf8"))
-        self.disk = eval(self.config['DEFAULT']['diskslist'])[0]
+        self.disks = eval(self.config['DEFAULT']['diskslist'])
+        self.disk = disks[0]
         self.lang = self.config['DEFAULT']['lang'].upper()
         #conf = config[lang]
 
@@ -18,3 +19,9 @@ class Config:
 
     def get_disk(self):
         return self.disk
+
+    def set_disk(self, disk):
+        if disk in self.disks:
+            self.disk = disk
+            return True
+        return False

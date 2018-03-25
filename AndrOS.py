@@ -34,48 +34,43 @@ for i in loadModulesList:
     try:
         className = i[:-3]
         mod = importlib.import_module('commands.%s' % className)
-        cmd = getattr(mod, className.title())(config, lang)
+        cmd = getattr(mod, className.title())(commandConfig)
         modules.append(cmd)
     except ImportError as err:
         print('Error:', err)
     loadProgress += loadModulesStep
-    stdout.write("\r{}%".format(loadProgress))
+    stdout.write("\rLoading plugins: {}% ".format(int(loadProgress)))
     stdout.flush()
-    time.sleep(0.1)
+    time.sleep(0.3)
 stdout.write('\n')
 
-commandManager = command.manager.Manager(modules)
+commandManager = command.manager.Manager(modules, commandConfig)
 
 if not devMode:
     spl.logo_and_change_log_writer()
 
-# quitFlag = False
-# createdFile = None
-# currentFile = None
-# listOfCommands = ['quit', 'create', 'read', 'write', 'load', 'close',
-#                   'cd', 'help', 'print', 'disk', 'start', 'rm', 'mkdir', 'ls']
-# listOfCommandsHelp = ['rm']
-# command = ''
-# currentText = ''
-# currentFileName = ''
 
-path = 'disks/' + disk
 
 
 print('Cesvet Team AndrOS {}'.format(version))
 print(conf['start'])
 
 while not commandManager.get_quitFlag():
-    command = input(path + '>')
+    path = commandManager.get_path()
+    command = input(path + ">")
     currentCommand = commandManager.parse_command(command)
 
     com = currentCommand.get_current_command()
     agvs = currentCommand.get_current_agvs()
-
+    processedCount = 0
     for cmd in modules:
         # print(cmd.get_command())
         if com == cmd.get_command():
+            processedCount += 1
             cmd.answer(agvs, commandManager)
+    if not processedCount:
+        pythonCommand = 'py -c ' + command
+        os.system(pythonCommand)
 
     # command = command.split()
     # # quit

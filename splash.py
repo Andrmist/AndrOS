@@ -19,12 +19,7 @@ STARTING THE MACHINE...
 
         print('Starting AndrOS...')
         time.sleep(2)
-        print('Loading files...')
-        for i in range(0, 100, 10):
-            stdout.write("\r{}%".format(i))
-            stdout.flush()
-            time.sleep(0.5)
-        stdout.write("\n")
+        print('Loading plugins:')
 
 
     def logo_and_change_log_writer(self):
