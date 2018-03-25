@@ -6,7 +6,7 @@ import os
 import splash
 import codecs
 
-version = '0.7.1 Beta'
+version = '0.8.0 Beta'
 devMode = ('DEV' in os.environ) if True else False
 
 config = configparser.ConfigParser()
@@ -15,6 +15,11 @@ config.read_file(codecs.open("config.ini", "r", "utf8"))
 spl = splash.Splash()
 if not devMode:
     spl.header_screen_writer()
+
+
+
+
+if not devMode:
     spl.logo_and_change_log_writer()
 
 quitFlag = False
