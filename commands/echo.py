@@ -1,9 +1,6 @@
-class Echo:
-    def __init__(self):
-        self.command = 'echo'
+import command.command
 
-    def get_command(self):
-        return self.command
+class Echo(command.command.Command):
 
     def answer(self,agvs,commandManager):
         for i in agvs:

@@ -1,9 +1,6 @@
-class Hello:
-    def __init__(self):
-        self.command = 'hello'
+import command.command
 
-    def get_command(self):
-        return self.command
+class Hello(command.command.Command):
 
     def answer(self,agvs,commandManager):
         print("World")
