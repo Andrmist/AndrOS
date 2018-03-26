@@ -7,6 +7,7 @@ class Manager:
         self.quitFlag = False
         self.commandConfig = commandConfig
         self.path = ''
+        self.fullPathList = []
 
     def parse_command(self,command_str):
         self.current_command = command.parser.Parser(command_str)
@@ -28,4 +29,7 @@ class Manager:
         return self.path
 
     def get_full_path(self):
-        return 'disks' + os.sep + commandConfig.get_disk() + os.sep + self.path
+        return 'disks' + os.sep + self.commandConfig.get_disk() + os.sep + self.path
+
+    def is_path_exists(self, path):
+        return os.path.exists('disks' + os.sep + self.commandConfig.get_disk() + os.sep + path)

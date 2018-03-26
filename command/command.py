@@ -21,4 +21,9 @@ class Command:
     def write_help(self):
         helper = self.get_helper()
         if len(helper) > 0:
+            print(helper)
+
+    def get_help(self):
+        helper = self.get_helper()
+        if len(helper) > 0:
             return helper

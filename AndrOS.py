@@ -15,7 +15,7 @@ import command.config
 version = '0.8.0 Beta'
 devMode = ('DEV' in os.environ) if True else False
 
-commandConfig = command.config.Config('config.ini')
+commandConfig = command.config.Config('config.ini', version)
 disk = commandConfig.get_disk()
 lang = commandConfig.get_lang()
 config = commandConfig.get_config()
@@ -56,7 +56,7 @@ print('Cesvet Team AndrOS {}'.format(version))
 print(conf['start'])
 
 while not commandManager.get_quitFlag():
-    path = commandManager.get_path()
+    path = commandManager.get_full_path()
     command = input(path + ">")
     currentCommand = commandManager.parse_command(command)
 
