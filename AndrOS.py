@@ -12,7 +12,7 @@ import command.manager
 import command.config
 
 
-version = '0.8.0 Beta'
+version = '0.9.0 Beta'
 devMode = ('DEV' in os.environ) if True else False
 
 commandConfig = command.config.Config('config.ini', version)

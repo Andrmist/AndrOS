@@ -1,5 +1,6 @@
 import command.command
 import requests
+import os
 
 
 class Getcomm(command.command.Command):
@@ -11,7 +12,7 @@ class Getcomm(command.command.Command):
                     if agvs[1] == '-r' or '-raw':
                         file_text = requests.get(agvs[2])
                         filename = agvs[2].split('/')[-1]
-                        file = open(filename, 'w')
+                        file = open('commands' + os.sep + filename, 'w')
                         file.write(file_text.text)
             except IndexError:
                 print('Error')

@@ -1,11 +1,12 @@
 import command.command
 import os
 
+
 class Cat(command.command.Command):
 
-    def answer(self,agvs,commandManager):
+    def answer(self, agvs, commandManager):
+        fileName = agvs[0]
         try:
-            fileName = agvs[0]
             text = open(commandManager.get_full_path() + os.sep + fileName, 'r+').read()
             print(text)
         except FileNotFoundError:
