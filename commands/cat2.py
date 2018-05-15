@@ -1,7 +1,7 @@
 import command.command
 import os
 
-class Cat2(command.command.Command):
+class Cat(command.command.Command):
 
     def answer(self,agvs,commandManager):
         try:
