@@ -19,3 +19,9 @@ class Rm(command.command.Command):
             if self.commandConfig.config.has_option(self.lang, "loadError"):
                 errorText = config[self.lang]["loadError"].format(fileName)
             print(errorText)
+        except IndexError:
+            errorText = 'Invalid Arguments!'
+            if self.commandConfig.config.has_option(self.lang, "invalidArgument"):
+                errorText = self.commandConfig.get_config()[self.lang]["invalidArgument"]
+            print(errorText)
+            self.write_help()

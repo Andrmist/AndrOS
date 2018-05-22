@@ -1,6 +1,6 @@
 import command.command
 import os
-
+# Example for get-comm
 class Cat2(command.command.Command):
 
     def answer(self,agvs,commandManager):
