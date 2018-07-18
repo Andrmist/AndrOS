@@ -27,3 +27,4 @@ class Command:
         helper = self.get_helper()
         if len(helper) > 0:
             return helper
+

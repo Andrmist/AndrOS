@@ -11,7 +11,6 @@ import codecs
 import command.manager
 import command.config
 
-
 version = '0.9.0 Beta'
 devMode = ('DEV' in os.environ) if True else False
 
@@ -50,8 +49,6 @@ if not devMode:
     spl.logo_and_change_log_writer()
 
 
-
-
 print('Cesvet Team AndrOS {}'.format(version))
 print(conf['start'])
 
@@ -70,6 +67,7 @@ while not commandManager.get_quitFlag():
             cmd.answer(agvs, commandManager)
     if not processedCount:
         pythonCommand = 'py -c ' + command
+        print(pythonCommand)
         os.system(pythonCommand)
 
     # command = command.split()

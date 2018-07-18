@@ -5,7 +5,7 @@ import os
 
 class Getcomm(command.command.Command):
 
-    def answer(self,agvs,commandManager):
+    def answer(self, agvs, commandManager):
         if self.check_arguments(agvs):
             try:
                 if agvs[0] == 'install':
