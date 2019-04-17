@@ -71,3 +71,5 @@ This will be updated in version 0.6.1
 ### Version 0.5 Beta
 - #### AndrOS was redone under Python 3
 - #### Added russian language
+
+### © Andriy Cherniy 2018-2019
