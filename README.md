@@ -20,7 +20,6 @@
 # All commands
 
 - ##### `cp` - Copy file
-- ##### `gmail` - Gmail client
 - ##### `reboot` - reboot AndrOS
 - ##### `cd` - go to directory
 - ##### `print` - print the string or number
