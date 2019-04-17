@@ -9,12 +9,12 @@
 ### For default:
 #### 1. Type "2"
 #### 2. Type "C"
-#### 2. Type "D"
+#### 3. Type "D"
 ### 2. Gmail
 ### If you want use your gmail for gmail command, you need to:
 #### 1. Type "y"
-#### 1. Type your email
-#### 1. Type your password (if you have 2 step authorization, you need to go [there](https://myaccount.google.com/apppasswords))
+#### 2. Type your email
+#### 3. Type your password (if you have 2 step authorization, you need to go [there](https://myaccount.google.com/apppasswords))
 ### For the first time, thats all!
 
 # All commands
