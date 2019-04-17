@@ -20,7 +20,6 @@
 # All commands
 
 - ##### `cp` - Copy file
-- ##### `getcomm` - Get command
 - ##### `gmail` - Gmail client
 - ##### `reboot` - reboot AndrOS
 - ##### `cd` - go to directory
