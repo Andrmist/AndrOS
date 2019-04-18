@@ -40,6 +40,11 @@
 
 # ChangeLog:
 
+### Version 0.9.0.6 Beta:
+- #### Removed Russian language :(
+- #### Fixed some stuff especially first launch
+
+
 ### Version 0.9.0.5 Beta:
 - #### Added commands:
 - ##### `cp` - Copy file
