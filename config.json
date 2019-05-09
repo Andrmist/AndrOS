@@ -1,5 +1,6 @@
 {
     "Options": {
+        "version": "0.10.1",
         "lang": "uk",
         "disksList": [
             "C",

@@ -2,14 +2,13 @@ import json
 import codecs
 
 class Config:
-    def __init__(self, configFile, version):
+    def __init__(self, configFile):
         self.config_file = configFile
         with codecs.open(self.config_file, encoding='utf-8') as jsonF:
             self.config = json.load(jsonF)
         self.disks = self.config["Options"]["disksList"]
         self.disk = self.disks[0]
         self.lang = self.config['Options']['lang'].upper()
-        self.version = version
         #conf = config[lang]
 
     def get_config(self):
@@ -38,7 +37,7 @@ class Config:
         return False
 
     def get_version(self):
-        return self.version
+        return self.config["Options"]["version"]
 
     def save(self, data):
         with open(self.config_file, "w") as jsonWF:

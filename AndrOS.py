@@ -14,14 +14,15 @@ import command.config
 import sys
 import json
 
-version = '0.9.0.6 Beta'
 devMode = ('DEV' in os.environ) if True else False
 
-commandConfig = command.config.Config('config.json', version)
+commandConfig = command.config.Config('config.json')
 #pm = command.package_manager.PackageManager()
 disk = commandConfig.get_disk()
 lang = commandConfig.get_lang()
 config = commandConfig.get_config()
+
+version = commandConfig.get_version()
 # conf = config["Localization"][lang]
 
 spl = splash.Splash()

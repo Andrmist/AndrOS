@@ -4,8 +4,7 @@ import base64
 import smtplib
 import command.config
 
-version = '0.10.1'
-commandConfig = command.config.Config('config.json', version)
+commandConfig = command.config.Config('config.json')
 config = commandConfig.get_config()
 
 pass_is_temp = False
