@@ -1,4 +1,4 @@
-# AndrOS Version 0.10.1
+# AndrOS Version 0.10.2
 
 ## About
 AndrOS is analog of Linux operating system, writed on Python 3. It uses your file system as itself. With AndrOS you can create, read and write files, change virtual disk. Also, you can launch python file and use Python Shell in AndrOS.
@@ -40,8 +40,14 @@ For the first time, thats all!
   * `rm` - remove file
 
 # ChangeLog:
+### Version 0.10.2:
+  * Added new command: changelog
+  * Changed start logo
 
 ### Version 0.10.1:
+  * Replace config.ini to config.json
+  * Some bugs fixed
+  * Added Ukrainian Localization
 
 
 ### Version 0.9.0.6 Beta:
