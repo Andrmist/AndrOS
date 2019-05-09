@@ -47,7 +47,7 @@ for i in loadModulesList:
     loadProgress += loadModulesStep
     stdout.write("\rLoading plugins: {}% ".format(int(loadProgress)))
     stdout.flush()
-    time.sleep(0.1)
+    time.sleep(0.01)
 stdout.write('\n')
 
 commandManager = command.manager.Manager(modules, commandConfig)

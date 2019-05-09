@@ -5,13 +5,7 @@ class Splash:
     def header_screen_writer(self):
         # time.sleep(5)
         print("""
-Cesvet Team
-       CCCCC     EEEEEE     SSSSSSSS     V         V     EEEEEE     TTTTTTTTT
-       C         E          S             V       V      E              T
-       C         EEEEEE     SSSSSSSS       V     V       EEEEEE         T
-       C         E                 S        V   V        E              T
-       C         E                 S         V V         E              T
-       CCCCC     EEEEEE     SSSSSSSS          V          EEEEEE         T
+Cherniy Production
 
 STARTING THE MACHINE...
         """)
@@ -62,4 +56,3 @@ STARTING THE MACHINE...
   .   :St;t: . .    .    .    .  .      .    . .ttX .X;t;t8
 X888X%;t;t;tSX@8888SS; .    .       .;XS8888@XSt;ttSS%;t;t;%S@8@'''
         print(icon)
-        print(open('changelog.txt', 'r').read())
