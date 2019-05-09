@@ -9,7 +9,7 @@ class Manager:
         self.path = ''
         self.fullPathList = []
 
-    def parse_command(self,command_str):
+    def parse_command(self, command_str):
         self.current_command = command.parser.Parser(command_str)
         return self.current_command
 

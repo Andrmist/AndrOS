@@ -12,20 +12,19 @@ class Write(command.command.Command):
         if self.check_arguments(argvs):
             try:
                 fileName = argvs[0]
-                print(config[self.lang]['AndrOS Writer'])
+                print(self.commandConfig.get_text("AndrOS Writer"))
                 fullFileName = commandManager.get_full_path() + os.sep + fileName
                 currentFile = open(fullFileName, 'w')
-                currentText = input(config[self.lang]['typetext'])
+                currentText = input(self.commandConfig.get_text("typetext"))
                 currentFile.write(currentText)
                 currentFile.close()
             except OSError:
-                errorText = 'Write Error!'
-                if self.commandConfig.config.has_option(self.lang, "writeError"):
-                    errorText = config[self.lang]["writeError"].format(fileName)
+                # errorText = 'Write Error!'
+                errorText = self.commandConfig.get_text("writeError").format(fileName)
                 print(errorText)
         else:
-            errorText = 'Invalid Arguments!'
-            if self.commandConfig.config.has_option(self.lang, "invalidArgument"):
-                errorText = config[self.lang]["invalidArgument"]
+            # errorText = 'Invalid Arguments!'
+
+            errorText = self.commandConfig.get_text("invalidArgument")
             print(errorText)
             self.write_help()

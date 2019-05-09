@@ -10,9 +10,7 @@ class Command:
 
     def get_helper(self):
         config = self.commandConfig.get_config()
-        text = ''
-        if self.commandConfig.config.has_option(self.lang, "helper " + self.command):
-            text = config[self.lang]["helper " + self.command]
+        text = self.commandConfig.get_text("helper " + self.command)
         return text
 
     def check_arguments(self, argvs):

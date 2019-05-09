@@ -11,10 +11,8 @@ class Cp(command.command.Command):
             end_filename = agvs[1]
             copyfile(commandManager.get_full_path() + os.sep + start_filename, commandManager.get_full_path() + os.sep + end_filename)
         except FileNotFoundError:
-            print('File not found!')
+            errorText = self.commandConfig.get_text("loadError")
         except IndexError:
-            errorText = 'Invalid Arguments!'
-            if self.commandConfig.config.has_option(self.lang, "invalidArgument"):
-                errorText = config[self.lang]["invalidArgument"]
+            errorText = self.commandConfig.get_text("invalidArgument")
             print(errorText)
             self.write_help()

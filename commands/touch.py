@@ -11,8 +11,6 @@ class Touch(command.command.Command):
             createdFile = open(commandManager.get_full_path() + os.sep + fileName, 'w')
             createdFile.close()
         except IndexError:
-            errorText = 'Invalid Arguments!'
-            if self.commandConfig.config.has_option(self.lang, "invalidArgument"):
-                errorText = config[self.lang]["invalidArgument"]
+            errorText = self.commandConfig.get_text("invalidArgument")
             print(errorText)
             self.write_help()

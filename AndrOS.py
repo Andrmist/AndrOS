@@ -10,15 +10,19 @@ import splash
 import codecs
 import command.manager
 import command.config
+#import command.package_manager
+import sys
+import json
 
-version = '0.9.0 Beta'
+version = '0.9.0.6 Beta'
 devMode = ('DEV' in os.environ) if True else False
 
-commandConfig = command.config.Config('config.ini', version)
+commandConfig = command.config.Config('config.json', version)
+#pm = command.package_manager.PackageManager()
 disk = commandConfig.get_disk()
 lang = commandConfig.get_lang()
 config = commandConfig.get_config()
-conf = config[lang]
+# conf = config["Localization"][lang]
 
 spl = splash.Splash()
 if not devMode:
@@ -28,6 +32,8 @@ modules = []
 loadModulesList = [f for f in os.listdir('./commands') if re.match(r'[^_].*\.py', f)]
 loadModulesStep = 100 / len(loadModulesList)
 loadProgress = 0
+
+#packageManager = command.package_manager.PackageManager()
 
 for i in loadModulesList:
     try:
@@ -40,7 +46,7 @@ for i in loadModulesList:
     loadProgress += loadModulesStep
     stdout.write("\rLoading plugins: {}% ".format(int(loadProgress)))
     stdout.flush()
-    time.sleep(0.3)
+    time.sleep(0.1)
 stdout.write('\n')
 
 commandManager = command.manager.Manager(modules, commandConfig)
@@ -50,7 +56,7 @@ if not devMode:
 
 
 print('Cesvet Team AndrOS {}'.format(version))
-print(conf['start'])
+print(commandConfig.get_text('start'))
 
 while not commandManager.get_quitFlag():
     path = commandManager.get_full_path()
@@ -65,7 +71,7 @@ while not commandManager.get_quitFlag():
         if com == cmd.get_command():
             processedCount += 1
             cmd.answer(agvs, commandManager)
-    if not processedCount:
+    if processedCount == 0:
         pythonCommand = 'py -c ' + command
         print(pythonCommand)
         os.system(pythonCommand)

@@ -11,14 +11,10 @@ class Disk(command.command.Command):
                 commandManager.set_path('')
                 pass
             else:
-                errorText = 'Invalid Disk Name!'
-                if self.commandConfig.config.has_option(self.lang, "invalidDiskName"):
-                    errorText = commandManager.commandConfig.config[self.lang]["invalidDiskName"]
+                errorText = self.commandConfig.get_text("invalidDiskName")
                 print(errorText.format(disk))
                 print(self.get_help().format(', '.join(commandManager.commandConfig.disks)))
         except IndexError:
-            errorText = 'Invalid Arguments!'
-            if self.commandConfig.config.has_option(self.lang, "invalidArgument"):
-                errorText = self.commandConfig.get_config()[self.lang]["invalidArgument"]
+            errorText = self.commandConfig.get_text("invalidArgument")
             print(errorText)
             self.write_help()

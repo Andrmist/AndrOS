@@ -2,67 +2,79 @@ import os
 import configparser
 import base64
 import smtplib
+import command.config
 
-config = configparser.ConfigParser()
-config.read('config.ini')
+version = '0.10.1'
+commandConfig = command.config.Config('config.json', version)
+config = commandConfig.get_config()
 
 pass_is_temp = False
 email = ''
 password = ''
 
-if config['DEFAULT']['lang'] == '':
+if config['Options']['lang'] == '':
     print('''Welcome to AndrOS!
     You need to set settings for your Operating system
-    Добро пожаловать в AndrOS!
-    Вам необходимо настроить Операционую систему''')
+    Ласкаво просимо в AndrOS!
+    Вам необхідно налаштувати Операційну систему''')
     disksList = []
     disk = ''
     disks = 0
-    lang = input("Choose language for Operating system. Выберите язык для вашей операционной системы. (en/ru):")
-    if lang == 'ru':
-        disks = int(input('Укажите количество дисков(Они должны быть созданы в папке Операционной системы: Папка с ОС/dist/disks):'))
-        for i in range(disks):
-            if i == 0:
-                disk = input('Название главного диска(папка главного диска: Папка с ОС/dist/disks):')
-            else:
-                disk = input('Название диска №' + str(i + 1) + '(папка диска: Папка с ОС/dist/disks):')
-            disksList.append(disk)
-        gmail_confirm = input('Хорошо. Вы хотите пользоваться почтой Gmail в AndrOS?(y/n): ')
-        if gmail_confirm == 'y' or gmail_confirm == 'Y':
-            print('''Тогда введите данные Gmail почты.
-            Внимание! Мы не в коем случае не используем ваши данные кроме как авторизации Google
-            Можно потом изменить эти настройки в config.ini в секции [Email]''')
-            while True:
-                email = input('Введите електронную почту("exit" чтобы вийти): ')
-                if email == 'exit':
-                    break
-                password = input('Введите пароль("exit" чтобы вийти): ')
-                if password == 'exit':
-                    break
-                print('Авторизуемся...')
-                try:
-                    server = smtplib.SMTP('smtp.gmail.com', 587)
-                    server.starttls()
-                    server.login(email, password)
-                    break
-                except smtplib.SMTPAuthenticationError:
-                    print('Ошибка авторизации!')
-                    continue
-    else:
+    lang = ''
+    select_params = False
+    while not select_params:
+        lang = input("Choose language for Operating system. Виеріть мову для Операційної системи. (en/uk):")
+        if lang == "uk":
+            disks = int(input(
+                'Вкажіть кількість дисків (Вони будуть створені у "<папка с ОС>/disks"):'))
+            # 'Укажите количество дисков(Они должны быть созданы в папке Операционной системы: Папка с ОС/disks):'
+            for i in range(disks):
+                if i == 0:
+                    disk = input('Введіть назву головного диску(Наприклад: "C"):')
+                    disksList.append(disk)
+                # Название главного диска(папки с диском):'
+                else:
+                    disk = input(
+                        'Вкажіть назву диску №' + str(i + 1) + '(Наприклад: "D"):')
+                    disksList.append(disk)
+            gmail_confirm = input('Гаразд. Чи бажаєте ви відправляти пошту через Gmail?(y/n): ')
+            if gmail_confirm == 'y' or gmail_confirm == 'Y':
+                print('''Введіть адрресу та пароль до Gmail акаунту
+                    Увага! Ми не використовуємо і нікуди не пересилаєм ваші персональні дані
+                            Ви можете змінити пошту та пароль у секції "Email" конфігураційного файлу.''')
+                while True:
+                    email = input('Вкажіть адрес Gmail(Введіть "exit", щоб закінчити): ')
+                    if email == 'exit':
+                        break
+                    password = input('Вкажіть пароль(Введіть "exit", щоб закінчити): ')
+                    if password == 'exit':
+                        break
+                    print('Authorizing...')
+                    try:
+                        server = smtplib.SMTP('smtp.gmail.com', 587)
+                        server.starttls()
+                        server.login(email, password)
+                        break
+                    except smtplib.SMTPAuthenticationError:
+                        print('Error!')
+                        continue
+            select_params = True
+        elif lang == 'en':
             disks = int(input('Specify the number of disks (They should be created in the folder of the Operating system: OS folder/dist/disks):'))
                 #'Укажите количество дисков(Они должны быть созданы в папке Операционной системы: Папка с ОС/dist/disks):'
             for i in range(disks):
                 if i == 0:
-                    disk = input('Enter name of main disk(folder of main disk in folder: OS folder/dist/disks):')
+                    disk = input('Enter name of main disk(For example: "C"):')
+                    disksList.append(disk)
                 #Название главного диска(папки с диском):'
                 else:
-                    disk = input('Enter name of disk №' + str(i + 1) + '(folder of main disk in folder: OS folder/dist/disks):')
+                    disk = input('Enter name of disk №' + str(i + 1) + '(For example: "D"):')
                     disksList.append(disk)
             gmail_confirm = input('Good. You want to use Gmail in AndrOS?(y/n): ')
             if gmail_confirm == 'y' or gmail_confirm == 'Y':
                 print('''Well, type email and password of Gmail account
                 Warning! We do not in any way use your data except Google authorization
-                You can then change these settings in config.ini in the [Email] section.''')
+                        You can then change these settings in config file in the "Email" section.''')
                 while True:
                     email = input('Enter your email("exit" to exit): ')
                     if email == 'exit':
@@ -79,14 +91,17 @@ if config['DEFAULT']['lang'] == '':
                     except smtplib.SMTPAuthenticationError:
                         print('Error!')
                         continue
+            select_params = True
+        else:
+            continue
+
     disksListString = ''
     for i in disksList:
         disksListString += i + ' '
-    config['DEFAULT'] = {
+    config['Options'] = {
         'lang': lang,
         'disksList': disksList
     }
     config['Email']['email'] = email
     config['Email']['password'] = password
-    with open('config.ini', 'w') as configfile:
-        config.write(configfile)
+    commandConfig.save(config)

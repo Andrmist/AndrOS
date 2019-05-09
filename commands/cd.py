@@ -35,9 +35,7 @@ class Cd(command.command.Command):
             else:
                 print('Error')
         except IndexError:
-            errorText = 'Invalid Arguments!'
-            if self.commandConfig.config.has_option(self.lang, "invalidArgument"):
-                errorText = self.commandConfig.get_config()[self.lang]["invalidArgument"]
+            errorText = self.commandConfig.get_text("invalidArgument")
             print(errorText)
             self.write_help()
 

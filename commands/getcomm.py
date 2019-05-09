@@ -1,6 +1,9 @@
+requires = ['requests']
 import command.command
+#import command.package_manager
 import requests
 import os
+#pm = command.package_manager.PackageManager()
 
 
 class Getcomm(command.command.Command):
@@ -14,5 +17,6 @@ class Getcomm(command.command.Command):
                         filename = agvs[2].split('/')[-1]
                         file = open('commands' + os.sep + filename, 'w')
                         file.write(file_text.text)
+                        #pm.check_file(filename)
             except IndexError:
                 print('Error')
