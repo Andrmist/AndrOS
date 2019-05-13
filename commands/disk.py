@@ -2,6 +2,7 @@ import command.command
 import os
 
 
+
 class Disk(command.command.Command):
 
     def answer(self,argvs,commandManager):
@@ -12,9 +13,9 @@ class Disk(command.command.Command):
                 pass
             else:
                 errorText = self.commandConfig.get_text("invalidDiskName")
-                print(errorText.format(disk))
-                print(self.get_help().format(', '.join(commandManager.commandConfig.disks)))
+                self.color.print_error(errorText.format(disk))
+                self.color.print_error(self.get_help().format(', '.join(commandManager.commandConfig.disks)))
         except IndexError:
             errorText = self.commandConfig.get_text("invalidArgument")
-            print(errorText)
+            self.color.print_error(errorText)
             self.write_help()

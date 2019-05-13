@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
+from colorama import init
+from termcolor import colored
 import time
+import colorama
 import start
-import configparser
 import os
 import re
 import importlib
@@ -10,32 +12,35 @@ import splash
 import codecs
 import command.manager
 import command.config
-#import command.package_manager
+import command.color
 import sys
 import json
+
+init()
 
 devMode = ('DEV' in os.environ) if True else False
 
 commandConfig = command.config.Config('config.json')
-#pm = command.package_manager.PackageManager()
+
 disk = commandConfig.get_disk()
 lang = commandConfig.get_lang()
 config = commandConfig.get_config()
 
 version = commandConfig.get_version()
-# conf = config["Localization"][lang]
+
 
 spl = splash.Splash()
 if not devMode:
     spl.header_screen_writer()
 
+# Load modules 
 modules = []
 loadModulesList = [f for f in os.listdir('./commands') if re.match(r'[^_].*\.py', f)]
 loadModulesStep = 100 / len(loadModulesList)
 loadProgress = 0
 
-#packageManager = command.package_manager.PackageManager()
 
+cmd = ''
 for i in loadModulesList:
     try:
         className = i[:-3]
@@ -43,9 +48,10 @@ for i in loadModulesList:
         cmd = getattr(mod, className.title())(commandConfig)
         modules.append(cmd)
     except ImportError as err:
-        print('Error:', err)
+        print('Error:', err, className)
+    
     loadProgress += loadModulesStep
-    stdout.write("\rLoading plugins: {}% ".format(int(loadProgress)))
+    stdout.write("\r" + 'Loading modules: {:.0%}'.format(loadProgress / 100))
     stdout.flush()
     time.sleep(0.01)
 stdout.write('\n')
@@ -55,13 +61,19 @@ commandManager = command.manager.Manager(modules, commandConfig)
 if not devMode:
     spl.logo_and_change_log_writer()
 
-
 print('Cesvet Team AndrOS {}'.format(version))
+print("")
 print(commandConfig.get_text('start'))
+print("")
 
+color = command.color.Color()
+# Command prompt
 while not commandManager.get_quitFlag():
     path = commandManager.get_full_path()
-    command = input(path + ">")
+    command = input(colored('[{}]> '.format(path), attrs=['bold']))
+    com1 = command.split()
+    if not com1:
+        continue
     currentCommand = commandManager.parse_command(command)
 
     com = currentCommand.get_current_command()
@@ -70,85 +82,10 @@ while not commandManager.get_quitFlag():
     for cmd in modules:
         # print(cmd.get_command())
         if com == cmd.get_command():
+            print("")
             processedCount += 1
             cmd.answer(agvs, commandManager)
+            print('')
     if processedCount == 0:
-        pythonCommand = 'py -c ' + command
-        print(pythonCommand)
-        os.system(pythonCommand)
+        color.print_error("{} - invalid command".format(com))
 
-    # command = command.split()
-    # # quit
-    # if command[0] == listOfCommands[0]:
-    #     quitFlag = True
-    # # create
-    # if command[0] == listOfCommands[1]:
-    #     createdFile = open(path + '/' + command[1], 'x+')
-    #     currentFile = createdFile
-    #     createdFile = None
-    #     currentFileName = command[1]
-    # # load
-    # if command[0] == listOfCommands[4]:
-    #     try:
-    #         currentFile = open(path + '/' + command[1], 'r+')
-    #         currentFileName = command[1]
-    #     except FileNotFoundError:
-    #         print(conf['loadError'].format(command[1]))
-    # # read
-    # if command[0] == listOfCommands[2]:
-    #     if currentFile == None:
-    #         print(conf['noFilesLoad'])
-    #     else:
-    #         print(currentFile.read())
-    # # write
-    # if command[0] == listOfCommands[3]:
-    #     if currentFile == None:
-    #         print(conf['noFilesLoad'])
-    #     else:
-    #         print(conf['AndrOS Writer'])
-    #         currentText = input(conf['typetext'])
-    #         currentFile.write(currentText)
-    #         currentFile = open(path + '/' + currentFileName, 'r+')
-    # # cd
-    # if command[0] == listOfCommands[6]:
-    #     if command[1] == '..':
-    #         pathArr = (path.split('/'))[:-1]
-    #         path = '/'.join(pathArr)
-    #     else:
-    #         path += '/' + command[1]
-    # # disk
-    # if command[0] == listOfCommands[9]:
-    #     for i in eval(config['DEFAULT']['diskslist']):
-    #         if command[1] == i:
-    #             disk = i
-    #             path = 'disks/' + disk
-    #             break
-    # # print
-    # if command[0] == listOfCommands[8]:
-    #     print(command[1])
-    # # start
-    # if command[0] == listOfCommands[10]:
-    #     os.system('py ' + path + '/' + command[1])
-    # # mkdir
-    # if command[0] == listOfCommands[12]:
-    #     os.mkdir(path + '/' + command[1])
-    # if command[0] == listOfCommands[11]:
-    #     if len(command) == 1:
-    #         print(conf['rmhelp'])
-    #     else:
-    #         try:
-    #             if command[1] == '-d' and command[2] != '':
-    #                 os.rmdir(path + '/' + command[2])
-    #         except IndexError:
-    #             os.remove(path + '/' + command[1])
-    # # ls
-    # if command[0] == listOfCommands[13]:
-    #     for i in os.listdir(path):
-    #         print(i)
-    # # help
-    # if command[0] == listOfCommands[7]:
-    #     try:
-    #         if command[1] == listOfCommandsHelp[0]:
-    #             print(conf['rmhelp'])
-    #     except IndexError:
-    #         print(conf['AndrOS Helper'])

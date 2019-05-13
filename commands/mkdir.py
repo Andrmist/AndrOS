@@ -9,5 +9,5 @@ class Mkdir(command.command.Command):
             os.mkdir(commandManager.get_full_path() + os.sep + dirName)
         except IndexError:
             errorText = self.commandConfig.get_text("invalidArgument")
-            print(errorText)
+            self.color.print_error(errorText)
             self.write_help()

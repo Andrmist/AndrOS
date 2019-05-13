@@ -6,4 +6,4 @@ class Echo(command.command.Command):
 
     def answer(self,agvs,commandManager):
         for i in agvs:
-            print(i)
+            self.color.print_command(i)

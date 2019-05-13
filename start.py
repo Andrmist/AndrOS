@@ -1,8 +1,11 @@
+# -*- coding: utf-8 -*-
 import os
 import configparser
 import base64
 import smtplib
 import command.config
+import tkinter as tk
+from tkinter import filedialog
 
 commandConfig = command.config.Config('config.json')
 config = commandConfig.get_config()
@@ -15,37 +18,42 @@ if config['Options']['lang'] == '':
     print('''Welcome to AndrOS!
     You need to set settings for your Operating system
     Ласкаво просимо в AndrOS!
-    Вам необхідно налаштувати Операційну систему''')
+    Вам необхiдно налаштувати Операцiйну систему''')
     disksList = []
     disk = ''
     disks = 0
     lang = ''
     select_params = False
     while not select_params:
-        lang = input("Choose language for Operating system. Виеріть мову для Операційної системи. (en/uk):")
+        lang = input("Choose language for Operating system. Виберiть мову для Операцiйної системи. (en/uk):")
         if lang == "uk":
             disks = int(input(
-                'Вкажіть кількість дисків (Вони будуть створені у "<папка с ОС>/disks"):'))
+                'Вкажiть кiлькiсть дискiв (Вони будуть створенi у "<папка с ОС>/disks"):'))
             # 'Укажите количество дисков(Они должны быть созданы в папке Операционной системы: Папка с ОС/disks):'
             for i in range(disks):
                 if i == 0:
-                    disk = input('Введіть назву головного диску(Наприклад: "C"):')
-                    disksList.append(disk)
+                    root = tk.Tk()
+                    root.withdraw()
+                    dirname = filedialog.askdirectory(title='Введiть папку головного диску:')
+                    dir = dirname.split("/")
+                    disksList.append(dir[-1])
                 # Название главного диска(папки с диском):'
                 else:
-                    disk = input(
-                        'Вкажіть назву диску №' + str(i + 1) + '(Наприклад: "D"):')
-                    disksList.append(disk)
-            gmail_confirm = input('Гаразд. Чи бажаєте ви відправляти пошту через Gmail?(y/n): ')
+                    root = tk.Tk()
+                    root.withdraw()
+                    dirname = filedialog.askdirectory(title='Вкажiть папку диску №' + str(i + 1) + ':')
+                    dir = dirname.split("/")
+                    disksList.append(dir[-1])
+            gmail_confirm = input('Гаразд. Чи бажаєте ви вiдправляти пошту через Gmail?(y/n): ')
             if gmail_confirm == 'y' or gmail_confirm == 'Y':
-                print('''Введіть адрресу та пароль до Gmail акаунту
-                    Увага! Ми не використовуємо і нікуди не пересилаєм ваші персональні дані
-                            Ви можете змінити пошту та пароль у секції "Email" конфігураційного файлу.''')
+                print('''Введiть адресу та пароль до Gmail акаунту
+                    Увага! Ми не використовуємо i нiкуди не пересилаєм вашi персональнi данi
+                            Ви можете змiнити пошту та пароль у секцiї "Email" конфiгурацiйного файлу.''')
                 while True:
-                    email = input('Вкажіть адрес Gmail(Введіть "exit", щоб закінчити): ')
+                    email = input('Вкажiть адрес Gmail(Введiть "exit", щоб закiнчити): ')
                     if email == 'exit':
                         break
-                    password = input('Вкажіть пароль(Введіть "exit", щоб закінчити): ')
+                    password = input('Вкажiть пароль(Введiть "exit", щоб закiнчити): ')
                     if password == 'exit':
                         break
                     print('Authorizing...')
@@ -97,10 +105,9 @@ if config['Options']['lang'] == '':
     disksListString = ''
     for i in disksList:
         disksListString += i + ' '
-    config['Options'] = {
-        'lang': lang,
-        'disksList': disksList
-    }
+    config['Options']['lang'] = lang
+    config['Options']['disksList'] = disksList
+    
     config['Email']['email'] = email
     config['Email']['password'] = password
     commandConfig.save(config)

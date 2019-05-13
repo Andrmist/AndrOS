@@ -1,4 +1,3 @@
-requires = ['requests']
 import command.command
 #import command.package_manager
 import requests
@@ -19,4 +18,6 @@ class Getcomm(command.command.Command):
                         file.write(file_text.text)
                         #pm.check_file(filename)
             except IndexError:
-                print('Error')
+                errorText = self.commandConfig.get_text("invalidArgument")
+                self.color.print_error(errorText)
+                self.write_help()

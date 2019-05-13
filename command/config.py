@@ -1,5 +1,6 @@
 import json
 import codecs
+import io
 
 class Config:
     def __init__(self, configFile):
@@ -40,6 +41,6 @@ class Config:
         return self.config["Options"]["version"]
 
     def save(self, data):
-        with open(self.config_file, "w") as jsonWF:
+        with io.open(self.config_file, "w", encoding="utf8") as jsonWF:
             json.dump(data, indent=4, fp=jsonWF, ensure_ascii=False)
 

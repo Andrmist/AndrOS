@@ -9,9 +9,9 @@ class Help(command.command.Command):
             for cmd in commandManager.get_modules():
                 helper = cmd.get_helper()
                 if len(helper) > 0:
-                    print(helper)
+                    self.color.print_info(helper)
                 else:
-                    print(cmd.get_command())
+                    self.color.print_info(cmd.get_command())
         else:
-            if agvs[0] == "rm":
-                print(self.commandConfig.get_text("rmhelp"))
+            if agvs[0] in self.commandConfig.get_config()["Localization"][self.commandConfig.get_lang()]["Help"]:
+                self.color.print_info(self.commandConfig.get_config()["Localization"][self.commandConfig.get_lang()]["Help"][agvs[0]])

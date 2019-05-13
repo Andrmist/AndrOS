@@ -13,7 +13,6 @@ STARTING THE MACHINE...
 
         print('Starting AndrOS...')
         time.sleep(2)
-        print('Loading plugins:')
 
 
     def logo_and_change_log_writer(self):

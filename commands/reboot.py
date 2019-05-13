@@ -7,6 +7,9 @@ import sys
 class Reboot(command.command.Command):
     # It's a beta function.
     def answer(self,agvs,commandManager):
-        print('Rebooting...')
+        self.color.print_command('Rebooting...')
         time.sleep(1)
-        os.execl(sys.executable, os.path.abspath(__file__), *sys.argv)
+        filename = sys.argv[0]
+        os.system(sys.executable + ' ' + filename)
+
+        sys.exit(0)

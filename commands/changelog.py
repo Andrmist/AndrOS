@@ -3,4 +3,4 @@ import os
 
 class Changelog(command.command.Command):
     def answer(self, agvs, commandManager):
-        print(open(os.getcwd() + os.sep + "changelog.txt", "r").read())
+        self.color.print_command(open(os.getcwd() + os.sep + "changelog.txt", "r").read())

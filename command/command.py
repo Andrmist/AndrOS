@@ -1,7 +1,9 @@
+import command.color
 class Command:
     def __init__(self, commandConfig):
         self.command = type(self).__name__.lower()
         self.commandConfig = commandConfig
+        self.color = command.color.Color()
         self.lang = commandConfig.get_lang()
         self.argvCount = 0
 
@@ -19,7 +21,7 @@ class Command:
     def write_help(self):
         helper = self.get_helper()
         if len(helper) > 0:
-            print(helper)
+            self.color.print_info(helper)
 
     def get_help(self):
         helper = self.get_helper()

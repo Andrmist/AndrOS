@@ -13,8 +13,8 @@ class Cat(command.command.Command):
         except FileNotFoundError:
             config = self.commandConfig.get_config()
             errorText = self.commandConfig.get_text("loadError").format(fileName)
-            print(errorText)
+            self.color.print_error(errorText)
         except IndexError:
             errorText = self.commandConfig.get_text("invalidArgument")
-            print(errorText)
+            self.color.print_error(errorText)
             self.write_help()
