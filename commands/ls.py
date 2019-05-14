@@ -15,10 +15,9 @@ class Ls(command.command.Command):
                         self.color.print_dir('/' + i + "  " + str(os.path.getsize(commandManager.get_full_path() + os.sep + i)))
                     else:
                         if re.match(r'[^_].*\.py', i):
-                            self.color.print_py(i)
+                            self.color.print_py(i + "  " + str(os.path.getsize(commandManager.get_full_path() + os.sep + i)))
                         elif i[0] == '.':
-                            if os.path.isdir(commandManager.get_full_path() + os.sep + i):
-                                self.color.print_inv('/' + i + "  " + str(os.path.getsize(commandManager.get_full_path() + os.sep + i)))
+                            self.color.print_inv(i + "  " + str(os.path.getsize(commandManager.get_full_path() + os.sep + i)))
                         else:    
                             print(i + "  " + str(os.path.getsize(commandManager.get_full_path() + os.sep + i)))
         except IndexError:
@@ -29,6 +28,6 @@ class Ls(command.command.Command):
                     if re.match(r'[^_].*\.py', i):
                             self.color.print_py(i)
                     elif i[0] == '.':
-                        self.color.print_inv('/' + i)
+                        self.color.print_inv(i)
                     else:
                         print(i)

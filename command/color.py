@@ -28,4 +28,4 @@ class Color:
         print(Fore.GREEN + Style.BRIGHT + text + Style.RESET_ALL)
 
     def print_inv(self, text):
-        print("\033[1;30;40m {} \033[0m".format(text))
+        print("\033[1;30;40m{} \033[0m".format(text))
