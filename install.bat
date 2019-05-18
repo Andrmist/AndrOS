@@ -1,7 +1,7 @@
 ::[Bat To Exe Converter]
 ::
 ::YAwzoRdxOk+EWAjk
-::fBw5plQjdCmDJHiK8FAfG1tGSQiHPXi/OoYT/fr46taBo1sUV+0xNobY1dQ=
+::fBw5plQjdCmDJHCw9U41Jg9obhGLMG+GALQK4ev04aSOoUJ9
 ::YAwzuBVtJxjWCl3EqQJgSA==
 ::ZR4luwNxJguZRRnk
 ::Yhs/ulQjdF+5
@@ -26,10 +26,8 @@
 ::ZQ0/vhVqMQ3MEVWAtB9wSA==
 ::Zg8zqx1/OA3MEVWAtB9wSA==
 ::dhA7pRFwIByZRRnk
-::Zh4grVQjdCmDJHiK8FAfG1tGSQiHPXi/OpcJ4eT/08uJpl8yZ6w6YIq7
 ::YB416Ek+ZG8=
 ::
 ::
 ::978f952a14a936cc963da21a135fa983
-cd /d %~dp0
-py ..\Source\AndrOS.py
+py -m pip install -r requirements.txt

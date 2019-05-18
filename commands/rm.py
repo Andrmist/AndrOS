@@ -1,5 +1,6 @@
 import command.command
 import os
+import shutil
 
 class Rm(command.command.Command):
 
@@ -7,7 +8,7 @@ class Rm(command.command.Command):
         try:
             if argvs[0] == "-d":
                 fileName = argvs[1]
-                os.rmdir(commandManager.get_full_path() + os.sep + fileName)
+                shutil.rmtree(commandManager.get_full_path() + os.sep + fileName)
             else:
                 fileName = argvs[0]
                 os.remove(commandManager.get_full_path() + os.sep + fileName)

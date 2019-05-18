@@ -5,7 +5,7 @@ import io
 class Config:
     def __init__(self, configFile):
         self.config_file = configFile
-        with codecs.open(self.config_file, encoding='utf-8') as jsonF:
+        with codecs.open(self.config_file, encoding='utf-8-sig') as jsonF:
             self.config = json.load(jsonF)
         self.disks = self.config["Options"]["disksList"]
         self.disk = self.disks[0]

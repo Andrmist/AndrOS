@@ -1,10 +1,11 @@
-﻿{
+{
     "Email": {
         "email": "",
         "password": ""
     },
     "Localization": {
         "UK": {
+            "fileExists": "Файл або директорiя вже iснує!",
             "start": "Введiть \"help\" для подробиць",
             "loadError": "Load Error: \"{}\"",
             "writeError": "Write Error: Неможливо вписати текст у \"{}\"",
@@ -12,11 +13,10 @@
             "invalidDiskname": "Не правильна назва диску: \"{}\"",
             "andros writer": "AndrOS Writer v. 0.1 Щоб зберегти, натиснiть ENTER",
             "typetext": "Введiть текст тут:",
-
             "Help": {
-              "italent": "AndrOS Helper version 1.6\nitalent [category] - Показати фіналістів ITalent.\nДоступні категорії для перегляду: program_development, game_development",
-              "rm": "AndrOS Helper version 1.6\nrm [path] - Видаляє файл в [path]\n-d - Видаляє папку в [path]\\",
-              "gmail": "AndrOS Helper version 1.6\ngmail - Відправляє текст поштою Gmail\n-s [To] [Subject] [Text] - Відправити поштою одним рядком"
+                "italent": "AndrOS Helper version 1.6\nitalent [category] - Показати фiналiстiв ITalent.\nДоступнi категорiї для перегляду: program_development, game_development",
+                "rm": "AndrOS Helper version 1.6\nrm [path] - Видаляє файл в [path]\n-d - Видаляє папку в [path]\\",
+                "gmail": "AndrOS Helper version 1.6\ngmail - Вiдправляє текст поштою Gmail\n-s [To] [Subject] [Text] - Вiдправити поштою одним рядком"
             },
             "helper mkdir": "mkdir - Створити папку",
             "helper touch": "touch - Створити файл",
@@ -26,7 +26,7 @@
             "helper help": "help - Допомога",
             "helper cp": "cp - Копiювати файл",
             "helper reboot": "reboot - Перезавантажити AndrOS",
-            "helper cd": "cd [folder] - Перехід між папками. Щоб повернутись назад: cd ..",
+            "helper cd": "cd [folder] - Перехiд мiж папками. Щоб повернутись назад: cd ..",
             "helper rm": "rm [file path] - Видалити файл. Для подробиць: \"help rm\"",
             "helper cat": "cat [file name] - Показати вмiст файлу",
             "helper quit": "quit - Вийти з AndrOS",
@@ -34,40 +34,42 @@
             "helper write": "write [file name] - Записати текст у файл",
             "helper disk": "disk [disk] - Змiнити диск",
             "helper start": "start [python file path] - Запустити Python файл(.py)",
-            "helper changelog": "changelog - Показати історію змін",
-            "helper italent": "italent [category] - Показати фіналістів ITalent. Для подробиць: \"help italent\""
+            "helper changelog": "changelog - Показати iсторiю змiн",
+            "helper italent": "italent [category] - Показати фiналiстiв ITalent. Для подробиць: \"help italent\""
         },
         "EN": {
+            "andros writer": "AndrOS Writer v. 0.1 To save text, you have to press ENTER",
+            "fileExists": "File or directory already exists!",
+            "invalidDiskName": "Invalid Disk Name: \"{}\"",
+            "writeError": "Write Error: Cannot write text to \"{}\"",
+            "invalidArgument": "Not enough arguments",
+            "loadError": "Load Error: \"{}\"",
+            "typetext": "Type your text here:",
+            "start": "Type \"help\" for more information",
             "Help": {
                 "italent": "AndrOS Helper version 1.6\nitalent [category] - Show ITalent finalists.\nAvaliable categories: program_development, game_development",
                 "rm": "AndrOS Helper version 1.6\nrm [path] - Removes file in [path]\n-d - Removes directory in [path]\\",
                 "gmail": "AndrOS Helper version 1.6\ngmail - Sends a letter using Gmail\n-s [To] [Subject] [Text] - Send by one line"
-              },
-              "helper italent": "italent [category] - Show ITalent finalists. For details: \"help italent\"",
-              "helper changelog": "changelog - displays changelog",
-              "helper ls": "ls - files list of directory",
-              "helper echo": "echo [text or number] - Print the text or number",
-              "invalidArgument": "Not enough arguments",
-              "helper cp": "cp - Copy file",
-              "helper cd": "cd [folder] - Go to folder. If you want to go back: cd ..",
-              "loadError": "Load Error: \"{}\"",
-              "helper quit": "quit - Quit from AndrOS",
-              "helper mkdir": "mkdir - Create a directory",
-              "helper rm": "rm [file path] - Remove file or directory. For details, please type: \"help rm\"",
-              "start": "Type \"help\" for more information",
-              "helper reboot": "reboot - reboot AndrOS",
-              "helper start": "start [python file path] - Start Python file(.py)",
-              "helper cat": "cat [file name] - Read (display) the contents of the file",
-              "helper getcomm": "getcomm -r - get command in the site(raw only)",
-              "invalidDiskName": "Invalid Disk Name: \"{}\"",
-              "typetext": "Type your text here:",
-              "writeError": "Write Error: Cannot write text to \"{}\"",
-              "helper write": "write [file name] - Write text in file",
-              "helper help": "help - help",
-              "helper disk": "disk [disk] - Change disk",
-              "helper gmail": "gmail - send letter to email. For details, please type: \"help gmail\"",
-              "andros writer": "AndrOS Writer v. 0.1 To save text, you have to press ENTER",
-              "helper touch": "touch - create the file"
+            },
+            "helper italent": "italent [category] - Show ITalent finalists. For details: \"help italent\"",
+            "helper changelog": "changelog - displays changelog",
+            "helper ls": "ls - files list of directory",
+            "helper echo": "echo [text or number] - Print the text or number",
+            "helper cp": "cp - Copy file",
+            "helper cd": "cd [folder] - Go to folder. If you want to go back: cd ..",
+            "helper quit": "quit - Quit from AndrOS",
+            "helper mkdir": "mkdir - Create a directory",
+            "helper rm": "rm [file path] - Remove file or directory. For details, please type: \"help rm\"",
+            "helper reboot": "reboot - reboot AndrOS",
+            "helper start": "start [python file path] - Start Python file(.py)",
+            "helper cat": "cat [file name] - Read (display) the contents of the file",
+            "helper getcomm": "getcomm -r - get command in the site(raw only)",
+            "helper write": "write [file name] - Write text in file",
+            "helper help": "help - help",
+            "helper disk": "disk [disk] - Change disk",
+            "helper gmail": "gmail - send letter to email. For details, please type: \"help gmail\"",
+            
+            "helper touch": "touch - create the file"
         }
     },
     "Options": {
@@ -75,7 +77,7 @@
             "C",
             "D"
         ],
-        "lang": "en",
+        "lang": "uk",
         "version": "1.0.0"
     }
 }
